@@ -1,63 +1,52 @@
-Oficina Mecânica - Banco de Dados
+# 🛠️ AutoPro OS - Sistema de Gestão Automotiva
 
-Descrição
+O **AutoPro** é uma solução Full-Stack desenvolvida para modernizar o fluxo de trabalho em oficinas mecânicas. O projeto substitui processos manuais por uma interface inteligente que prioriza o que é urgente e automatiza cálculos financeiros complexos.
 
-Este projeto tem como objetivo desenvolver um banco de dados para a gestão de uma oficina mecânica. O sistema permitirá o controle de clientes, veículos, serviços realizados, mecânicos responsáveis e peças utilizadas nos reparos.
+---
 
-Etapas do Projeto
+## 🎯 O Diferencial do Projeto
+Diferente de sistemas básicos de CRUD, o AutoPro foca na **experiência do usuário (UX)** e na **gestão de prazos**:
+- **Inteligência de Prazos:** O sistema monitora a data de entrega e sinaliza visualmente (via animações e cores) ordens de serviço críticas.
+- **Dinamismo em Tela:** Utilização de *Event Delegation* em JavaScript para manipular tabelas de itens (peças/serviços) sem necessidade de refresh ou chamadas constantes ao servidor.
+- **Relatórios Visuais:** Dashboard com KPIs (Indicadores Chave de Desempenho) como faturamento mensal e taxa de pendências.
 
-Modelagem do Banco de Dados: Definição do esquema relacional com base na modelagem conceitual.
+---
 
-Criação do Banco de Dados: Desenvolvimento do script SQL para criação das tabelas.
+## 🚀 Funcionalidades Principais
 
-Inserção de Dados: População das tabelas com dados fictícios para testes.
+| Recurso | Descrição |
+| :--- | :--- |
+| **Dashboard** | Visão geral de faturamento, clientes ativos e alertas de OS atrasadas. |
+| **Editor Dinâmico** | Adição de múltiplos itens com cálculo de subtotal e total em tempo real. |
+| **Gestão de Status** | Fluxo de trabalho completo: Em Aberto -> Em Andamento -> Concluída -> Cancelada. |
+| **Gerador de PDF/Print** | Layout otimizado para impressão de orçamentos e comprovantes profissionais. |
+| **Banco Relacional** | Estrutura de dados robusta ligando Clientes, Veículos e Itens de Serviço. |
 
-Consultas SQL: Implementação de queries para análise de dados.
+---
 
-Estrutura do Banco de Dados
+## 💻 Stack Técnica
 
-O banco de dados contém as seguintes tabelas principais:
+* **Back-end:** PHP 8.2 (Arquitetura limpa e proteção contra SQL Injection básica)
+* **Front-end:** Tailwind CSS 3.0 (Design responsivo e Dark Mode friendly)
+* **Database:** MySQL (Relacionamentos com integridade referencial - *Foreign Keys*)
+* **Interatividade:** JavaScript Vanilla (Cálculos de DOM e máscaras de dados)
 
-Clientes: Informações pessoais dos clientes.
+---
 
-Veículos: Dados sobre os veículos cadastrados.
+## 📸 Demonstração Visual
 
-Serviços: Registro dos serviços prestados.
+### Painel Principal (Dashboard)
+> *Destaque para o sistema de alertas em vermelho para serviços fora do prazo.*
+[Link ou Imagem do seu Dashboard]
 
-Mecânicos: Informações dos profissionais responsáveis pelos serviços.
+### Editor de Itens
+> *Interface interativa para gerenciamento de peças e mão de obra.*
+[Link ou Imagem do Editor de Itens]
 
-Ordens de Serviço: Registro de cada serviço realizado, associando clientes, veículos e mecânicos.
+---
 
-Peças: Cadastro das peças utilizadas nos reparos.
+## 🛠️ Como Instalar e Rodar
 
-Consultas SQL Implementadas
-
-Recuperação de Dados: SELECT para exibição de registros.
-
-Filtragem de Dados: WHERE para restringir os resultados.
-
-Ordenação: ORDER BY para organização das informações.
-
-Agrupamento: GROUP BY e HAVING para sumarização de dados.
-
-Junções: JOIN para combinar informações de múltiplas tabelas.
-
-Tecnologias Utilizadas
-
-Banco de Dados: PostgreSQL / MySQL
-
-Ferramentas de Modelagem: MySQL Workbench, DB Designer
-
-Linguagem SQL
-
-Como Executar
-
-Clone este repositório.
-
-Execute o script SQL para criar as tabelas.
-
-Insira dados fictícios para testes.
-
-Utilize as queries para análise de informações.
-
-Este projeto faz parte de um desafio de modelagem de banco de dados.
+1. **Clonar o repositório:**
+   ```bash
+   git clone [https://github.com/awaldige/autopro-os.git]
