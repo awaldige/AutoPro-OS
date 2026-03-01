@@ -121,7 +121,7 @@ Edite as credenciais de host, user, pass e dbname.
 
 4.Acessar o sistema:
 
-Abra no navegador via http://localhost/autopro-os/index.php.
+Abra no navegador via (http://awaldige.infinityfree.me/autopro/)
 
 📄 Licença
 Distribuído sob a licença MIT. Veja LICENSE para mais informações.
