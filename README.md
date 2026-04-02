@@ -35,13 +35,16 @@ Diferente de sistemas básicos de CRUD, o AutoPro foca na **experiência do usu�
 
 ## 📸 Demonstração Visual
 
-### Painel Principal (Dashboard)
-> *Destaque para o sistema de alertas em vermelho para serviços fora do prazo.*
-[Link ou Imagem do seu Dashboard]
+![Captura de tela 2026-04-02 124049](https://github.com/user-attachments/assets/6f5fc6bf-0c29-417c-8b51-ecf655b371aa)
+![Captura de tela 2026-04-02 124118](https://github.com/user-attachments/assets/21d6b3ce-a6a2-49bf-b29e-d6fa5c769b18)
+![Captura de tela 2026-04-02 124148](https://github.com/user-attachments/assets/3c2577b3-384e-4517-9760-163705408ea2)
+![Captura de tela 2026-04-02 124221](https://github.com/user-attachments/assets/70d09c10-552e-4087-be5b-fa7d0caece5a)
+![Captura de tela 2026-04-02 124238](https://github.com/user-attachments/assets/f876952f-09dd-4494-81ab-8e6a6e0700d2)
+![Captura de tela 2026-04-02 124408](https://github.com/user-attachments/assets/5c9d1abc-5df4-430f-ba94-8d9c3927f818)
+![Captura de tela 2026-04-02 124327](https://github.com/user-attachments/assets/42793867-56dd-4267-8180-7a9ebbe6aa8f)
 
-### Editor de Itens
-> *Interface interativa para gerenciamento de peças e mão de obra.*
-[Link ou Imagem do Editor de Itens]
+
+
 
 ---
 
