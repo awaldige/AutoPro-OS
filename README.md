@@ -1,7 +1,8 @@
-# 🛠️ AutoPro OS - Sistema de Gestão Automotiva
+# 🚗 AutoPro OS — Sistema de Gestão para Oficinas Mecânicas
 
-O **AutoPro** é uma solução Full-Stack desenvolvida para modernizar o fluxo de trabalho em oficinas mecânicas. O projeto substitui processos manuais por uma interface inteligente que prioriza o que é urgente e automatiza cálculos financeiros complexos.
+O AutoPro OS é um sistema web desenvolvido para auxiliar na organização das operações de oficinas mecânicas, centralizando informações de clientes, veículos e ordens de serviço.
 
+O projeto tem como objetivo simplificar o acompanhamento dos serviços e demonstrar a aplicação de tecnologias web no desenvolvimento de sistemas administrativos.
 ---
 
 ## 🎯 O Diferencial do Projeto
@@ -12,24 +13,31 @@ Diferente de sistemas básicos de CRUD, o AutoPro foca na **experiência do usu�
 
 ---
 
-## 🚀 Funcionalidades Principais
-
-| Recurso | Descrição |
-| :--- | :--- |
-| **Dashboard** | Visão geral de faturamento, clientes ativos e alertas de OS atrasadas. |
-| **Editor Dinâmico** | Adição de múltiplos itens com cálculo de subtotal e total em tempo real. |
-| **Gestão de Status** | Fluxo de trabalho completo: Em Aberto -> Em Andamento -> Concluída -> Cancelada. |
-| **Gerador de PDF/Print** | Layout otimizado para impressão de orçamentos e comprovantes profissionais. |
-| **Banco Relacional** | Estrutura de dados robusta ligando Clientes, Veículos e Itens de Serviço. |
-
+## ✨ Funcionalidades
+- Gestão de ordens de serviço: organização e acompanhamento dos serviços cadastrados.
+- Cadastro de clientes: centralização das informações dos clientes.
+- Cadastro de veículos: registro dos veículos associados aos atendimentos.
+- Controle de status: acompanhamento das etapas das ordens de serviço.
+- Impressão de documentos: geração de versões para impressão das informações de serviço.
+- Interface web: acesso às funcionalidades por meio do navegador.
 ---
 
-## 💻 Stack Técnica
+## 🛠️ Tecnologias Utilizadas
+- PHP: desenvolvimento do backend e das regras da aplicação.
+- MySQL: armazenamento e gerenciamento dos dados.
+- HTML5: estrutura das páginas.
+- CSS3: estilização da interface.
+- JavaScript: interações e funcionalidades do frontend.
+---
 
-* **Back-end:** PHP 8.2 (Arquitetura limpa e proteção contra SQL Injection básica)
-* **Front-end:** Tailwind CSS 3.0 (Design responsivo e Dark Mode friendly)
-* **Database:** MySQL (Relacionamentos com integridade referencial - *Foreign Keys*)
-* **Interatividade:** JavaScript Vanilla (Cálculos de DOM e máscaras de dados)
+---
+📂 Estrutura do Projeto
+
+A organização dos arquivos deve ser documentada de acordo com a estrutura real do repositório.
+
+Para conferir os diretórios e arquivos, acesse:
+
+Explorar os arquivos do AutoPro-OS
 
 ---
 
@@ -43,90 +51,70 @@ Diferente de sistemas básicos de CRUD, o AutoPro foca na **experiência do usu�
 ![Captura de tela 2026-04-02 124408](https://github.com/user-attachments/assets/5c9d1abc-5df4-430f-ba94-8d9c3927f818)
 ![Captura de tela 2026-04-02 124327](https://github.com/user-attachments/assets/42793867-56dd-4267-8180-7a9ebbe6aa8f)
 
-
-
-
 ---
 
-## 🛠️ Como Instalar e Rodar
+## 🚀 Como Executar Localmente
+1. Clonar o repositório
+git clone https://github.com/awaldige/AutoPro-OS.git
+2. Abrir o projeto
+cd AutoPro-OS
 
-1. **Clonar o repositório:**
-   ```bash
-   git clone [https://github.com/awaldige/autopro-os.git]
+Abra a pasta no VS Code ou no editor de sua preferência.
 
-   O Gemini disse
-Para elevar o nível do seu portfólio, o README precisa ser "escaneável" e mostrar que você pensou no problema de negócio que o código resolve. Recrutadores adoram ver tópicos sobre instalação e diferenciais técnicos.
+3. Preparar o ambiente PHP
 
-Aqui está uma versão otimizada, com uma estrutura mais profissional e organizada:
+Utilize um ambiente local compatível com PHP e MySQL, como XAMPP ou Laragon.
 
-Markdown
-# 🛠️ AutoPro OS - Sistema de Gestão Automotiva
+Configure o servidor web para apontar para a pasta do projeto.
 
-O **AutoPro** é uma solução Full-Stack desenvolvida para modernizar o fluxo de trabalho em oficinas mecânicas. O projeto substitui processos manuais por uma interface inteligente que prioriza o que é urgente e automatiza cálculos financeiros complexos.
+4. Configurar o banco de dados
 
----
+Verifique no repositório se existe um arquivo SQL para criação das tabelas e dados iniciais. Caso exista, importe-o no MySQL.
 
-## 🎯 O Diferencial do Projeto
-Diferente de sistemas básicos de CRUD, o AutoPro foca na **experiência do usuário (UX)** e na **gestão de prazos**:
-- **Inteligência de Prazos:** O sistema monitora a data de entrega e sinaliza visualmente (via animações e cores) ordens de serviço críticas.
-- **Dinamismo em Tela:** Utilização de *Event Delegation* em JavaScript para manipular tabelas de itens (peças/serviços) sem necessidade de refresh ou chamadas constantes ao servidor.
-- **Relatórios Visuais:** Dashboard com KPIs (Indicadores Chave de Desempenho) como faturamento mensal e taxa de pendências.
+Configure as credenciais de conexão conforme o arquivo de configuração realmente utilizado pelo projeto.
 
----
+5. Executar a aplicação
 
-## 🚀 Funcionalidades Principais
+Inicie o servidor web e o MySQL. Depois, acesse o endereço local correspondente à pasta do projeto.
 
-| Recurso | Descrição |
-| :--- | :--- |
-| **Dashboard** | Visão geral de faturamento, clientes ativos e alertas de OS atrasadas. |
-| **Editor Dinâmico** | Adição de múltiplos itens com cálculo de subtotal e total em tempo real. |
-| **Gestão de Status** | Fluxo de trabalho completo: Em Aberto -> Em Andamento -> Concluída -> Cancelada. |
-| **Gerador de PDF/Print** | Layout otimizado para impressão de orçamentos e comprovantes profissionais. |
-| **Banco Relacional** | Estrutura de dados robusta ligando Clientes, Veículos e Itens de Serviço. |
+Exemplo de endereço:
 
----
+http://localhost/AutoPro-OS/
 
-## 💻 Stack Técnica
+O endereço exato depende da configuração do servidor local e da localização dos arquivos.
 
-* **Back-end:** PHP 8.2 (Arquitetura limpa e proteção contra SQL Injection básica)
-* **Front-end:** Tailwind CSS 3.0 (Design responsivo e Dark Mode friendly)
-* **Database:** MySQL (Relacionamentos com integridade referencial - *Foreign Keys*)
-* **Interatividade:** JavaScript Vanilla (Cálculos de DOM e máscaras de dados)
+## 🧠 Destaques Técnicos
 
----
+- Desenvolvimento de aplicação web com PHP.
+- Integração com banco de dados relacional.
+- Organização de informações de clientes e veículos.
+- Gerenciamento de ordens de serviço.
+- Operações de cadastro, consulta, atualização e exclusão, conforme implementadas.
+- Interface para acompanhamento das operações da oficina.
+  
+ ## 🔮 Possíveis Melhorias Futuras
+- Painel com indicadores operacionais.
+- Histórico detalhado dos serviços por veículo.
+- Gestão de peças e estoque.
+- Cadastro de usuários e níveis de acesso.
+- Pesquisa avançada de ordens de serviço.
+- Relatórios com filtros por período e status.
+- Melhorias de usabilidade em dispositivos móveis.
 
-## 📸 Demonstração Visual
 
-### Painel Principal (Dashboard)
-> *Destaque para o sistema de alertas em vermelho para serviços fora do prazo.*
-[Link ou Imagem do seu Dashboard]
 
-### Editor de Itens
-> *Interface interativa para gerenciamento de peças e mão de obra.*
-[Link ou Imagem do Editor de Itens]
+## 🎯 Objetivo do Projeto
 
----
+O AutoPro OS foi desenvolvido como projeto de portfólio para demonstrar conhecimentos em desenvolvimento web, integração com banco de dados e construção de sistemas administrativos voltados a necessidades operacionais.
 
-## 🛠️ Como Instalar e Rodar
+## 👨‍💻 Autor
 
-1. **Clonar o repositório:**
-   ```bash
-   git clone [https://github.com/seu-usuario/autopro-os.git](https://github.com/seu-usuario/autopro-os.git)
-Configurar o Banco de Dados:
+André Waldige
+Desenvolvedor Full Stack — AW TECHNOLOGY
 
-2.Importe o arquivo database.sql no seu servidor MySQL (XAMPP, WAMP, Docker, etc).
+GitHub: https://github.com/awaldige
 
-3.Configurar Conexão:
+## 📄 Licença
 
-Renomeie o arquivo conexao.example.php para conexao.php.
+Consulte o arquivo de licença do repositório para conhecer as condições de uso e distribuição do projeto.
 
-Edite as credenciais de host, user, pass e dbname.
-
-4.Acessar o sistema:
-
-Abra no navegador via (http://awaldige.infinityfree.me/autopro/)
-
-📄 Licença
-Distribuído sob a licença MIT. Veja LICENSE para mais informações.
-
-Desenvolvido com ☕ e PHP por André Waldige
