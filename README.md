@@ -31,13 +31,29 @@ Diferente de sistemas básicos de CRUD, o AutoPro foca na **experiência do usu�
 ---
 
 ---
-📂 Estrutura do Projeto
+## 📂 Estrutura do Projeto
 
-A organização dos arquivos deve ser documentada de acordo com a estrutura real do repositório.
+O AutoPro OS possui uma estrutura simplificada, com os arquivos PHP organizados na raiz do repositório.
 
-Para conferir os diretórios e arquivos, acesse:
-
-Explorar os arquivos do AutoPro-OS
+AutoPro-OS/
+├── README.md
+├── index.php
+├── conexao.php
+├── database.sql
+├── estilo.css
+├── nova_os.php
+├── processar_os.php
+├── listar_os.php
+├── editar_os.php
+├── atualizar_status.php
+├── excluir_os.php
+├── imprimir_os.php
+├── cadastrar_cliente.php
+├── listar_clientes.php
+├── cadastrar_veiculo.php
+├── listar_veiculos.php
+├── processar_veiculo.php
+└── modelo relacional oficina.png
 
 ---
 
