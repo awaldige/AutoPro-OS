@@ -1,20 +1,45 @@
-<?php 
-include 'conexao.php'; 
 
-// Lógica para Salvar o Cliente se o formulário for enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST['nome'];
-    $endereco = $_POST['endereco'];
-    $telefone = $_POST['telefone'];
+<?php
+require_once 'conexao.php';
 
-    $sql = "INSERT INTO Clientes (NomeCliente, Endereco, Telefone) 
-            VALUES ('$nome', '$endereco', '$telefone')";
+$erro = '';
+$nome = '';
+$endereco = '';
+$telefone = '';
 
-    if ($conn->query($sql) === TRUE) {
-        header("Location: index.php"); // Volta para o painel após salvar
-        exit();
+function escapar($valor) {
+    return htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = trim($_POST['nome'] ?? '');
+    $endereco = trim($_POST['endereco'] ?? '');
+    $telefone = trim($_POST['telefone'] ?? '');
+
+    if ($nome === '') {
+        $erro = 'Informe o nome completo do cliente.';
+    } elseif (mb_strlen($nome, 'UTF-8') > 45) {
+        $erro = 'O nome deve ter no máximo 45 caracteres.';
+    } elseif (mb_strlen($endereco, 'UTF-8') > 45) {
+        $erro = 'O endereço deve ter no máximo 45 caracteres.';
+    } elseif (mb_strlen($telefone, 'UTF-8') > 15) {
+        $erro = 'O telefone deve ter no máximo 15 caracteres.';
     } else {
-        $erro = "Erro ao cadastrar: " . $conn->error;
+        try {
+            $sql = "INSERT INTO Clientes (NomeCliente, Endereco, Telefone)
+                    VALUES (?, ?, ?)";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('sss', $nome, $endereco, $telefone);
+            $stmt->execute();
+            $stmt->close();
+
+            header('Location: listar_clientes.php?sucesso=1');
+            exit();
+        } catch (mysqli_sql_exception $e) {
+            error_log('Erro ao cadastrar cliente: ' . $e->getMessage());
+            $erro = 'Não foi possível cadastrar o cliente. Tente novamente.';
+        }
     }
 }
 ?>
@@ -22,77 +47,206 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Cliente - AutoPro</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body class="bg-slate-50 flex min-h-screen">
+    <meta name="theme-color" content="#0f172a">
+    <title>Novo Cliente - AutoPro OS</title>
 
-    <aside class="w-64 bg-slate-900 text-white p-6 hidden md:block">
-        <div class="flex items-center gap-3 mb-10 border-b border-slate-700 pb-6">
-            <i class="fas fa-tools text-3xl text-blue-400"></i>
-            <span class="text-xl font-black tracking-tighter">AUTOPRO</span>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800">
+
+<div class="min-h-screen md:flex">
+
+    <aside class="w-full bg-slate-900 text-white md:fixed md:inset-y-0 md:left-0 md:w-64">
+        <div class="flex items-center justify-between border-b border-slate-700 px-6 py-5 md:mb-8">
+            <a href="index.php" class="flex items-center gap-3">
+                <i class="fas fa-tools text-3xl text-blue-400"></i>
+                <span class="text-xl font-black tracking-tight">AUTOPRO <span class="text-blue-400">OS</span></span>
+            </a>
+
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 md:hidden">
+                Clientes
+            </span>
         </div>
-        <nav class="space-y-2">
-            <a href="index.php" class="flex items-center gap-3 p-3 hover:bg-slate-800 rounded-xl transition text-slate-300">
-                <i class="fas fa-chart-line w-5 text-center"></i> Dashboard
+
+        <nav class="flex gap-2 overflow-x-auto px-4 pb-4 md:flex-col md:space-y-2 md:px-5">
+            <a href="index.php"
+               class="flex shrink-0 items-center gap-3 rounded-xl px-4 py-3 text-slate-300 transition hover:bg-slate-800 hover:text-white">
+                <i class="fas fa-chart-line w-5 text-center"></i>
+                <span>Dashboard</span>
             </a>
-            <a href="cadastrar_cliente.php" class="flex items-center gap-3 p-3 bg-blue-600 rounded-xl shadow-lg font-semibold text-white">
-                <i class="fas fa-users w-5 text-center"></i> Clientes
+
+            <a href="listar_clientes.php"
+               class="flex shrink-0 items-center gap-3 rounded-xl bg-blue-600 px-4 py-3 font-semibold text-white shadow-lg shadow-blue-950/20">
+                <i class="fas fa-users w-5 text-center"></i>
+                <span>Clientes</span>
             </a>
-            <a href="cadastrar_veiculo.php" class="flex items-center gap-3 p-3 hover:bg-slate-800 rounded-xl transition text-slate-300">
-                <i class="fas fa-car w-5 text-center"></i> Veículos
+
+            <a href="cadastrar_veiculo.php"
+               class="flex shrink-0 items-center gap-3 rounded-xl px-4 py-3 text-slate-300 transition hover:bg-slate-800 hover:text-white">
+                <i class="fas fa-car w-5 text-center"></i>
+                <span>Veículos</span>
             </a>
         </nav>
     </aside>
 
-    <main class="flex-1 p-8">
-        <div class="max-w-2xl mx-auto">
-            <header class="mb-8">
-                <h1 class="text-3xl font-extrabold text-slate-800">Novo Cliente</h1>
-                <p class="text-slate-500">Preencha os dados para cadastrar o proprietário.</p>
-            </header>
+    <main class="min-w-0 flex-1 p-5 md:ml-64 md:p-8 lg:p-10">
 
-            <?php if(isset($erro)): ?>
-                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-r shadow-sm">
-                    <p class="font-bold">Atenção!</p>
-                    <p><?php echo $erro; ?></p>
+        <div class="mx-auto max-w-3xl">
+
+            <div class="mb-8">
+                <div class="mb-4">
+                    <a href="listar_clientes.php"
+                       class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition hover:text-blue-600">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar para clientes
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-600">
+                        <i class="fas fa-user-plus text-2xl"></i>
+                    </div>
+
+                    <div>
+                        <h1 class="text-2xl font-extrabold tracking-tight text-slate-800 md:text-3xl">
+                            Novo Cliente
+                        </h1>
+                        <p class="mt-1 text-sm text-slate-500">
+                            Cadastre os dados do proprietário do veículo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <?php if ($erro !== ''): ?>
+                <div class="mb-6 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-red-700"
+                     role="alert">
+                    <i class="fas fa-circle-exclamation mt-0.5"></i>
+                    <p class="text-sm font-medium"><?php echo escapar($erro); ?></p>
                 </div>
             <?php endif; ?>
 
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-                <form action="cadastrar_cliente.php" method="POST" class="space-y-6">
+            <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+                <div class="border-b border-slate-100 px-6 py-5 md:px-8">
+                    <h2 class="font-bold text-slate-800">Informações do cliente</h2>
+                    <p class="mt-1 text-sm text-slate-500">
+                        Preencha os campos abaixo para registrar um novo cliente.
+                    </p>
+                </div>
+
+                <form action="cadastrar_cliente.php" method="POST" class="space-y-6 p-6 md:p-8">
+
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Nome Completo</label>
-                        <input type="text" name="nome" placeholder="Ex: João da Silva" required
-                               class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        <label for="nome" class="mb-2 block text-sm font-bold text-slate-700">
+                            Nome completo <span class="text-red-500">*</span>
+                        </label>
+
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+
+                            <input
+                                type="text"
+                                id="nome"
+                                name="nome"
+                                maxlength="45"
+                                value="<?php echo escapar($nome); ?>"
+                                placeholder="Ex.: João da Silva"
+                                autocomplete="name"
+                                required
+                                class="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                            >
+                        </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Endereço</label>
-                        <input type="text" name="endereco" placeholder="Rua, Número, Bairro"
-                               class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        <label for="telefone" class="mb-2 block text-sm font-bold text-slate-700">
+                            Telefone
+                        </label>
+
+                        <div class="relative">
+                            <i class="fas fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+
+                            <input
+                                type="tel"
+                                id="telefone"
+                                name="telefone"
+                                maxlength="15"
+                                value="<?php echo escapar($telefone); ?>"
+                                placeholder="(11) 99999-9999"
+                                autocomplete="tel"
+                                class="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                            >
+                        </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Telefone com DDD</label>
-                        <input type="text" name="telefone" placeholder="(11) 99999-9999"
-                               class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        <label for="endereco" class="mb-2 block text-sm font-bold text-slate-700">
+                            Endereço
+                        </label>
+
+                        <div class="relative">
+                            <i class="fas fa-location-dot absolute left-4 top-4 text-slate-400"></i>
+
+                            <input
+                                type="text"
+                                id="endereco"
+                                name="endereco"
+                                maxlength="45"
+                                value="<?php echo escapar($endereco); ?>"
+                                placeholder="Rua, número e bairro"
+                                autocomplete="street-address"
+                                class="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                            >
+                        </div>
                     </div>
 
-                    <div class="pt-4 flex gap-4">
-                        <button type="submit" class="flex-1 bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-100">
+                    <div class="rounded-xl bg-slate-50 p-4">
+                        <p class="text-xs text-slate-500">
+                            <i class="fas fa-info-circle mr-1 text-blue-500"></i>
+                            Os campos telefone e endereço são opcionais. O nome completo é obrigatório.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col-reverse gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:justify-end">
+
+                        <a href="listar_clientes.php"
+                           class="rounded-xl bg-slate-100 px-6 py-3 text-center text-sm font-bold text-slate-600 transition hover:bg-slate-200">
+                            Cancelar
+                        </a>
+
+                        <button type="submit"
+                                class="rounded-xl bg-blue-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-100 transition hover:bg-blue-700">
+                            <i class="fas fa-check mr-2"></i>
                             Salvar Cliente
                         </button>
-                        <a href="index.php" class="px-6 py-3 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition">
-                            Voltar
-                        </a>
+
                     </div>
+
                 </form>
-            </div>
+            </section>
+
+            <p class="mt-6 text-center text-xs text-slate-400">
+                AutoPro OS · AW TECHNOLOGY
+            </p>
+
         </div>
     </main>
+</div>
+
 </body>
 </html>
