@@ -1,136 +1,239 @@
 # 🚗 AutoPro OS — Sistema de Gestão para Oficinas Mecânicas
 
-O AutoPro OS é um sistema web desenvolvido para auxiliar na organização das operações de oficinas mecânicas, centralizando informações de clientes, veículos e ordens de serviço.
+O **AutoPro OS** é um sistema web desenvolvido para auxiliar na administração de oficinas mecânicas, centralizando o gerenciamento de clientes, veículos e ordens de serviço em uma interface moderna e intuitiva.
 
-O projeto tem como objetivo simplificar o acompanhamento dos serviços e demonstrar a aplicação de tecnologias web no desenvolvimento de sistemas administrativos.
----
+O projeto passou por uma atualização com foco em organização, experiência do usuário, segurança das operações e facilidade de utilização.
 
-## 🎯 O Diferencial do Projeto
-Diferente de sistemas básicos de CRUD, o AutoPro foca na **experiência do usuário (UX)** e na **gestão de prazos**:
-- **Inteligência de Prazos:** O sistema monitora a data de entrega e sinaliza visualmente (via animações e cores) ordens de serviço críticas.
-- **Dinamismo em Tela:** Utilização de *Event Delegation* em JavaScript para manipular tabelas de itens (peças/serviços) sem necessidade de refresh ou chamadas constantes ao servidor.
-- **Relatórios Visuais:** Dashboard com KPIs (Indicadores Chave de Desempenho) como faturamento mensal e taxa de pendências.
+Desenvolvido por **AW TECHNOLOGY**, o AutoPro OS faz parte do portfólio de projetos voltados ao desenvolvimento de soluções web e sistemas administrativos.
 
 ---
+
+## 🎯 Objetivo do Projeto
+
+Demonstrar a aplicação prática de tecnologias web na construção de um sistema de gestão, oferecendo recursos para organizar as informações da oficina e acompanhar os serviços realizados.
 
 ## ✨ Funcionalidades
-- Gestão de ordens de serviço: organização e acompanhamento dos serviços cadastrados.
-- Cadastro de clientes: centralização das informações dos clientes.
-- Cadastro de veículos: registro dos veículos associados aos atendimentos.
-- Controle de status: acompanhamento das etapas das ordens de serviço.
-- Impressão de documentos: geração de versões para impressão das informações de serviço.
-- Interface web: acesso às funcionalidades por meio do navegador.
+
+### 📊 Dashboard
+- Painel inicial com indicadores e informações gerais.
+- Resumo das operações da oficina.
+- Acesso rápido às principais funcionalidades.
+- Interface organizada e responsiva.
+
+### 👥 Gestão de Clientes
+- Cadastro de clientes.
+- Listagem e consulta de registros.
+- Pesquisa de clientes.
+- Edição de informações cadastradas.
+- Validação e tratamento dos dados.
+
+### 🚘 Gestão de Veículos
+- Cadastro de veículos.
+- Associação de veículos aos respectivos clientes.
+- Listagem e pesquisa de veículos.
+- Validação de placas e prevenção de duplicidades.
+
+### 🛠️ Ordens de Serviço
+- Abertura de novas ordens de serviço.
+- Associação da OS a um veículo.
+- Registro de número, descrição, valor e datas.
+- Controle de status.
+- Consulta e filtragem das ordens cadastradas.
+- Edição das informações e dos itens da OS.
+- Exclusão com validação de segurança.
+- Visualização e impressão da ordem de serviço.
+
+---
+
+## 🛡️ Segurança e Boas Práticas
+
+Durante o desenvolvimento foram aplicadas práticas para melhorar a segurança e a confiabilidade das operações:
+
+- Consultas SQL preparadas com prepared statements.
+- Validação de dados recebidos pelos formulários.
+- Tratamento de dados exibidos na interface para reduzir riscos de XSS.
+- Proteção CSRF nas operações que exigem essa validação.
+- Restrição de métodos HTTP nas operações de escrita.
+- Tratamento de erros e transações nas operações de edição de ordens de serviço.
+- Separação das configurações privadas do banco de dados dos arquivos versionados.
+
 ---
 
 ## 🛠️ Tecnologias Utilizadas
-- PHP: desenvolvimento do backend e das regras da aplicação.
-- MySQL: armazenamento e gerenciamento dos dados.
-- HTML5: estrutura das páginas.
-- CSS3: estilização da interface.
-- JavaScript: interações e funcionalidades do frontend.
----
+
+| Tecnologia | Aplicação |
+|---|---|
+| PHP | Backend e regras de negócio |
+| MySQL / MariaDB | Banco de dados relacional |
+| HTML5 | Estrutura das páginas |
+| CSS3 | Estilização das interfaces |
+| Tailwind CSS | Construção da interface visual |
+| JavaScript | Interações no frontend |
+| Git e GitHub | Versionamento do projeto |
 
 ---
+
 ## 📂 Estrutura do Projeto
 
-O AutoPro OS possui uma estrutura simplificada, com os arquivos PHP organizados na raiz do repositório.
+O projeto possui uma estrutura simplificada, com os arquivos PHP organizados na raiz do repositório.
 
-AutoPro-OS/
-├── README.md
-├── index.php
-├── conexao.php
-├── database.sql
-├── estilo.css
-├── nova_os.php
-├── processar_os.php
-├── listar_os.php
-├── editar_os.php
-├── atualizar_status.php
-├── excluir_os.php
-├── imprimir_os.php
-├── cadastrar_cliente.php
-├── listar_clientes.php
-├── cadastrar_veiculo.php
-├── listar_veiculos.php
-├── processar_veiculo.php
-└── modelo relacional oficina.png
+| Arquivo | Finalidade |
+|---|---|
+| `index.php` | Dashboard principal |
+| `conexao.php` | Gerenciamento da conexão com o banco |
+| `config.local.php` | Configuração privada do banco (não versionada) |
+| `.env.example` | Exemplo de variáveis de ambiente |
+| `database-estrutura.sql` | Estrutura do banco de dados |
+| `favicon.svg` | Ícone vetorial do sistema |
+| `favicon.ico` | Ícone compatível com navegadores tradicionais |
+| `cadastrar_cliente.php` | Cadastro de clientes |
+| `listar_clientes.php` | Listagem e pesquisa de clientes |
+| `editar_cliente.php` | Formulário de edição de clientes |
+| `atualizar_cliente.php` | Processamento da atualização de clientes |
+| `cadastrar_veiculo.php` | Cadastro de veículos |
+| `processar_veiculo.php` | Processamento do cadastro de veículos |
+| `listar_veiculos.php` | Listagem de veículos |
+| `nova_os.php` | Abertura de ordem de serviço |
+| `processar_os.php` | Processamento de novas ordens |
+| `listar_os.php` | Consulta e gerenciamento de ordens |
+| `editar_os.php` | Edição de ordens de serviço |
+| `excluir_os.php` | Exclusão protegida de ordens |
+| `imprimir_os.php` | Visualização para impressão |
 
 ---
 
 ## 📸 Demonstração Visual
 
-![Captura de tela 2026-04-02 124049](https://github.com/user-attachments/assets/6f5fc6bf-0c29-417c-8b51-ecf655b371aa)
-![Captura de tela 2026-04-02 124118](https://github.com/user-attachments/assets/21d6b3ce-a6a2-49bf-b29e-d6fa5c769b18)
-![Captura de tela 2026-04-02 124148](https://github.com/user-attachments/assets/3c2577b3-384e-4517-9760-163705408ea2)
-![Captura de tela 2026-04-02 124221](https://github.com/user-attachments/assets/70d09c10-552e-4087-be5b-fa7d0caece5a)
-![Captura de tela 2026-04-02 124238](https://github.com/user-attachments/assets/f876952f-09dd-4494-81ab-8e6a6e0700d2)
-![Captura de tela 2026-04-02 124408](https://github.com/user-attachments/assets/5c9d1abc-5df4-430f-ba94-8d9c3927f818)
-![Captura de tela 2026-04-02 124327](https://github.com/user-attachments/assets/42793867-56dd-4267-8180-7a9ebbe6aa8f)
+As imagens abaixo apresentam telas da versão anterior do projeto. A interface foi posteriormente modernizada.
+
+![Dashboard](https://github.com/user-attachments/assets/6f5fc6bf-0c29-417c-8b51-ecf655b371aa)
+
+![Tela 2](https://github.com/user-attachments/assets/21d6b3ce-a6a2-49bf-b29e-d6fa5c769b18)
+
+![Tela 3](https://github.com/user-attachments/assets/3c2577b3-384e-4517-9760-163705408ea2)
+
+![Tela 4](https://github.com/user-attachments/assets/70d09c10-552e-4087-be5b-fa7d0caece5a)
+
+![Tela 5](https://github.com/user-attachments/assets/f876952f-09dd-4494-81ab-8e6a6e0700d2)
+
+![Tela 6](https://github.com/user-attachments/assets/5c9d1abc-5df4-430f-ba94-8d9c3927f818)
+
+![Tela 7](https://github.com/user-attachments/assets/42793867-56dd-4267-8180-7a9ebbe6aa8f)
 
 ---
 
 ## 🚀 Como Executar Localmente
-1. Clonar o repositório
+
+### 1. Pré-requisitos
+
+- PHP 8.0 ou superior.
+- MySQL ou MariaDB.
+- Extensão PHP MySQLi habilitada.
+- XAMPP, Laragon ou ambiente equivalente.
+- Git (opcional, para clonar o repositório).
+
+### 2. Clonar o repositório
+
+```bash
 git clone https://github.com/awaldige/AutoPro-OS.git
-2. Abrir o projeto
+```
+
+Entre na pasta:
+
+```bash
 cd AutoPro-OS
+```
 
-Abra a pasta no VS Code ou no editor de sua preferência.
+### 3. Configurar o banco de dados
 
-3. Preparar o ambiente PHP
+Crie um banco de dados vazio no MySQL ou MariaDB.
 
-Utilize um ambiente local compatível com PHP e MySQL, como XAMPP ou Laragon.
+Importe o arquivo:
 
-Configure o servidor web para apontar para a pasta do projeto.
+```text
+database-estrutura.sql
+```
 
-4. Configurar o banco de dados
+Esse arquivo contém a estrutura do banco para preparar o ambiente. Ele não deve ser tratado como uma cópia de dados reais de uma oficina.
 
-Verifique no repositório se existe um arquivo SQL para criação das tabelas e dados iniciais. Caso exista, importe-o no MySQL.
+### 4. Configurar a conexão
 
-Configure as credenciais de conexão conforme o arquivo de configuração realmente utilizado pelo projeto.
+O arquivo `conexao.php` carrega automaticamente as configurações privadas de `config.local.php`.
 
-5. Executar a aplicação
+Crie o arquivo `config.local.php` na raiz do projeto, utilizando o modelo abaixo e substituindo os valores pelos dados do seu ambiente:
 
-Inicie o servidor web e o MySQL. Depois, acesse o endereço local correspondente à pasta do projeto.
+```php
+<?php
 
-Exemplo de endereço:
+return [
+    'host' => '127.0.0.1',
+    'user' => 'seu_usuario',
+    'pass' => 'sua_senha',
+    'database' => 'nome_do_banco',
+    'port' => 3306
+];
+```
 
-http://localhost/AutoPro-OS/
+Ajuste o endereço, usuário, senha, nome do banco e porta conforme a configuração do seu MySQL ou MariaDB.
 
-O endereço exato depende da configuração do servidor local e da localização dos arquivos.
+**Importante:**
+- O arquivo `config.local.php` é privado e não deve ser enviado ao GitHub.
+- Não coloque senhas reais em arquivos versionados.
+- O `.gitignore` já possui regras para proteger esse arquivo.
+- O arquivo `.env.example` é apenas uma referência de variáveis; a conexão atual utiliza `config.local.php`.
 
-## 🧠 Destaques Técnicos
+### 5. Executar a aplicação
 
-- Desenvolvimento de aplicação web com PHP.
-- Integração com banco de dados relacional.
-- Organização de informações de clientes e veículos.
-- Gerenciamento de ordens de serviço.
-- Operações de cadastro, consulta, atualização e exclusão, conforme implementadas.
-- Interface para acompanhamento das operações da oficina.
-  
- ## 🔮 Possíveis Melhorias Futuras
-- Painel com indicadores operacionais.
-- Histórico detalhado dos serviços por veículo.
-- Gestão de peças e estoque.
+Com o servidor web e o banco de dados iniciados, acesse o projeto pelo navegador.
+
+Uma alternativa é utilizar o servidor embutido do PHP, executando na pasta do projeto:
+
+```bash
+php -S 127.0.0.1:8000
+```
+
+Depois, acesse:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+## 🌐 Configuração em Hospedagem
+
+Para utilizar o sistema em uma hospedagem, crie um `config.local.php` próprio no ambiente de produção.
+
+Utilize os dados de conexão MySQL fornecidos pelo painel da hospedagem, incluindo host, usuário, senha, banco de dados e porta, quando aplicável.
+
+O arquivo deve permanecer privado e fora do versionamento do Git.
+
+A configuração local e a configuração de produção devem ser independentes.
+
+---
+
+## 🔮 Possíveis Melhorias Futuras
+
 - Cadastro de usuários e níveis de acesso.
-- Pesquisa avançada de ordens de serviço.
-- Relatórios com filtros por período e status.
-- Melhorias de usabilidade em dispositivos móveis.
+- Histórico completo de serviços por veículo.
+- Gestão de peças e estoque.
+- Relatórios gerenciais por período.
+- Exportação de relatórios.
+- Notificações de prazos e entregas.
+- Aprimoramentos adicionais para dispositivos móveis.
 
-
-
-## 🎯 Objetivo do Projeto
-
-O AutoPro OS foi desenvolvido como projeto de portfólio para demonstrar conhecimentos em desenvolvimento web, integração com banco de dados e construção de sistemas administrativos voltados a necessidades operacionais.
+---
 
 ## 👨‍💻 Autor
 
-André Waldige
-Desenvolvedor Full Stack — AW TECHNOLOGY
+**André Waldige**
+Desenvolvedor Full Stack — **AW TECHNOLOGY**
 
-GitHub: https://github.com/awaldige
+- GitHub: https://github.com/awaldige
+- Portfólio: https://andre-waldige.vercel.app/
+
+---
 
 ## 📄 Licença
 
 Consulte o arquivo de licença do repositório para conhecer as condições de uso e distribuição do projeto.
-

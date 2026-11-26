@@ -1,0 +1,23 @@
+﻿# Configurações locais e credenciais
+.env
+.env.*
+!.env.example
+
+# Configurações privadas de cada ambiente
+config.local.php
+config.*.local.php
+
+# Backups criados durante o upgrade
+*.backup-*
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Configurações de editores
+.vscode/
+.idea/
+
+# Sistema operacional
+Thumbs.db
+.DS_Store
